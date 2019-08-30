@@ -31,6 +31,7 @@ import static com.hankcs.hanlp.utility.Predefine.logger;
  */
 public class CoreDictionary
 {
+    // 双数组的Trie树
     public static DoubleArrayTrie<Attribute> trie = new DoubleArrayTrie<Attribute>();
     public final static String path = HanLP.Config.CoreDictionaryPath;
     public static final int totalFrequency = 221894;
@@ -59,11 +60,19 @@ public class CoreDictionary
     public static final int M_WORD_ID = getWordID(Predefine.TAG_NUMBER);
     public static final int NX_WORD_ID = getWordID(Predefine.TAG_PROPER);
 
+
+    /**
+     * 词典加载
+     * 1.查看是否存在缓存字典(二级制形式)，如果存在就从缓存直接加载
+     * 2.如果不存在则加载文本形式
+     * 3.将文本形式词典生成缓存（二级制形式）
+     *
+     * */
     private static boolean load(String path)
     {
         logger.info("核心词典开始加载:" + path);
-        if (loadDat(path)) return true; // sdf
-        TreeMap<String, CoreDictionary.Attribute> map = new TreeMap<String, Attribute>();
+        if (loadDat(path)) return true; // 加载二进制词典
+        TreeMap<String, CoreDictionary.Attribute> map = new TreeMap<String, Attribute>(); // 红黑树
         BufferedReader br = null;
         try
         {
