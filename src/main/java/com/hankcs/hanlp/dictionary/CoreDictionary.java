@@ -62,7 +62,7 @@ public class CoreDictionary
     private static boolean load(String path)
     {
         logger.info("核心词典开始加载:" + path);
-        if (loadDat(path)) return true; // 
+        if (loadDat(path)) return true; // sdf 
         TreeMap<String, CoreDictionary.Attribute> map = new TreeMap<String, Attribute>();
         BufferedReader br = null;
         try
