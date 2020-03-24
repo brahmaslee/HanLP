@@ -31,7 +31,7 @@ public class CorpusLoader
     public static void walk(String folderPath, Handler handler)
     {
         long start = System.currentTimeMillis();
-        List<File> fileList = FolderWalker.open(folderPath);
+        List<File> fileList = FolderWalker.open(folderPath); //5555555
         int i = 0;
         for (File file : fileList)
         {
